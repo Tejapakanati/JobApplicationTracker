@@ -29,7 +29,7 @@ def add_job_application(request):
 
         return redirect(add_job_application)
 
-    return render(request, "application/add_job.html")
+    return render(request, "application/add_Job.html")
 
 
 def edit_applications(request):
