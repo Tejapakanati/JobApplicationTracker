@@ -29,7 +29,7 @@ def add_job_application(request):
 
         return redirect(add_job_application)
 
-    return render(request, "application/add_Job.html")
+    return render(request, "Application/add_Job.html")
 
 
 
@@ -45,7 +45,7 @@ def edit_applications(request):
         applications = applications.filter(status=status)
     return render(
         request,
-        "application/edit_job.html",
+        "Application/edit_job.html",
         {
             "applications": applications,
             "search": search,
@@ -70,7 +70,7 @@ def edit_application(request, id):
 
     return render(
         request,
-        "application/edit_application.html",
+        "Application/edit_application.html",
         {"application": application}
     )
 
