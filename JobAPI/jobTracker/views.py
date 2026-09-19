@@ -51,6 +51,7 @@ def edit_applications(request):
             "search": search,
             "status": status,
 
+
         }
     )
 
