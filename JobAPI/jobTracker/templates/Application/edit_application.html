@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job Application</title>
+</head>
+
+<body>
+
+    <h2>Edit Job Application</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Company -->
+        <div class="form-group">
+            <label for="company">Company Name:</label>
+
+            <input
+                type="text"
+                id="company"
+                name="company"
+                value="{{ application.company }}"
+                required
+            >
+        </div>
+
+        <br>
+
+        <!-- Job Title -->
+        <div class="form-group">
+            <label for="job_title">Job Role:</label>
+
+            <input
+                type="text"
+                id="job_title"
+                name="job_title"
+                value="{{ application.job_title }}"
+                required
+            >
+        </div>
+
+        <br>
+
+        <!-- Job URL -->
+        <div class="form-group">
+            <label for="job_url">Job URL:</label>
+
+            <input
+                type="url"
+                id="job_url"
+                name="job_url"
+                value="{{ application.job_url }}"
+                required
+            >
+        </div>
+
+        <br>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label for="status">Status:</label>
+
+            <select name="status" id="status">
+
+                <option value="Applied"
+                    {% if application.status == "Applied" %}selected{% endif %}>
+                    Applied
+                </option>
+
+                <option value="Interview"
+                    {% if application.status == "Interview" %}selected{% endif %}>
+                    Interview
+                </option>
+
+                <option value="Rejected"
+                    {% if application.status == "Rejected" %}selected{% endif %}>
+                    Rejected
+                </option>
+
+                <option value="Selected"
+                    {% if application.status == "Selected" %}selected{% endif %}>
+                    Selected
+                </option>
+
+            </select>
+        </div>
+
+        <br>
+
+        <button type="submit">
+            Update Application
+        </button>
+
+    </form>
+
+    <br>
+
+    <!-- Back to Applications -->
+    <a href="{% url 'edit_applications' %}">
+        Back to Applications
+    </a>
+
+</body>
+</html>
+

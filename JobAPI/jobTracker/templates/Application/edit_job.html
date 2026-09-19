@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Job Applications</title>
+</head>
+
+<body>
+    <form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search company or job title"
+        value="{{ search }}"
+    >
+
+    <select name="status">
+
+        <option value="">All Status</option>
+
+        <option value="Applied"
+            {% if status == "Applied" %}selected{% endif %}>
+            Applied
+        </option>
+
+        <option value="Interview"
+            {% if status == "Interview" %}selected{% endif %}>
+            Interview
+        </option>
+
+        <option value="Rejected"
+            {% if status == "Rejected" %}selected{% endif %}>
+            Rejected
+        </option>
+
+        <option value="Selected"
+            {% if status == "Selected" %}selected{% endif %}>
+            Selected
+        </option>
+
+    </select>
+
+    <button type="submit">Search</button>
+
+</form>
+
+    <h1>Job Applications</h1>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Job Title</th>
+                <th>Job ID</th>
+                <th>Location</th>
+                <th>Application Date</th>
+                <th>Status</th>
+                <th>Job URL</th>
+                <th>Source</th>
+                <th>Notes</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for application in applications %}
+
+            <tr>
+
+                <td>{{ application.company }}</td>
+
+                <td>{{ application.job_title }}</td>
+
+                <td>{{ application.job_id }}</td>
+
+                <td>{{ application.location }}</td>
+
+                <td>{{ application.application_date }}</td>
+
+                <td>{{ application.status }}</td>
+
+                <td>{{ application.job_url }}</td>
+
+                <td>{{ application.source }}</td>
+
+                <td>{{ application.notes }}</td>
+
+                <td>
+                    <a href="{% url 'edit_application' application.id %}">
+                        ✏️ Edit
+                    </a>
+
+                    <a href="{% url 'delete_application' application.id %}"
+                            onclick="return confirm('Are you sure you want to delete this application?');">
+                            🗑️ Delete
+                    </a>
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="10">
+                    No job applications found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <a href="{% url 'add_job' %}">
+        <button type="button">Add New Application</button>
+    </a>
+
+</body>
+
+</html>
