@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import JobApplication
 
 
@@ -57,7 +57,7 @@ def edit_applications(request):
 
 
 def edit_application(request, id):
-    application = JobApplication.objects.get(id=id)
+    application = get_object_or_404(JobApplication, id=id)
 
     if request.method == "POST":
         application.company = request.POST.get("company")
